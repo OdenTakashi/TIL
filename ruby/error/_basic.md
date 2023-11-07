@@ -40,3 +40,28 @@ SyntaxError
 SystemExit
 SystemStackError
 ```
+
+## 複数のエラーを捕捉したい時
+
+```rb
+
+begin
+  # `KeyError`と`StopIteration`が発生する処理
+rescue KeyError
+
+rescue StopIteration
+
+end
+
+begin
+  # `KeyError`と`StopIteration`が発生する処理
+rescue KeyError, StopIteration
+
+end
+
+begin
+  # `KeyError`と`StopIteration`が発生する処理
+rescue *[KeyError, StopIteration]
+
+end
+```
