@@ -40,3 +40,24 @@ irb(main):009:0> a_method
 irb(main):011:0> a_method {'ブロックがあるよ'}
 => "ブロックがあるよ"
 ```
+## ブロックはクロージャー
+
+クロージャーとは、定義時の変数などを保持している関数のこと。
+
+```rb
+irb(main):018:1* def my_method
+irb(main):019:1*   x = 'Goodbye'
+irb(main):020:1*   yield('cruel')
+irb(main):021:0> end
+=> :my_method
+
+irb(main):022:0> x = 'Hello'
+=> "Hello"
+irb(main):023:0> my_method { |y| "#{x}, #{y} world"}
+=> "Hello, cruel world"
+```
+
+このコードでブロック内で使われているローカル変数`x`は、メソッド内の`x`ではなく`x = 'Hello'`になる。
+ブロックはローカル変数を包んで連れて行くという考え方。
+
+
