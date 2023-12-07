@@ -43,3 +43,66 @@
 - スパニングツリー
 - リンクあグリケーション
 - LLDP(Link Layer Discovery Protocol)
+
+## 無線通信
+文字通り、コンピューター機器をネットワークに接続するケーブルが不要
+通信距離に応じて分類することができる
+- 無線PAN: 10m前後
+- 無線LAN: 100m前後
+- 無線MAN: 数km~100km
+- 無線RAN: 200km~700km
+- 無線WAN: -
+
+### CSMA/CA
+CSMA/CDと似た制御方式
+Carrier Senseによりデータを送信していい状態か確認をし、ランダムな時間だけ待ってからデータの送信を開始する仕組み
+
+### IEEE802.11
+無線LANプロトコルの物理走とデータリンク層の一部(MAC層)を定義した規格
+IEEE802.11はIEEE802.11関連の規格の基礎
+MAC層ではイーサネットと同じMACアドレスが利用され、CSMA/CAというアクセス制御方式が採用されている
+
+### IEEE802.11b/IEEE802.11g
+2.4GHz帯の電波を利用する無線LAN
+データ伝送速度は最大11Mbps(IEEE802.11b)、54Mbps(IEEE802.11g)
+CSMA/CAというアクセス制御方式を採用
+
+### IEEE802.11a
+無線LANの物理層として5GHz帯の周波数を利用
+データ伝送速度は最大54Mbps
+CSMA/CAというアクセス制御方式を採用
+
+### IEEE802.11n
+IEEE802.11a, IEEE802.11aをベースに、複数のアンテナを同期させて通信するMIMO(Multiple-Input Multiple-Output)という技術を採用
+2.4GHz, 5GHz帯を利用
+また、データ伝送速度はIEEE802.11a/b/gの倍の帯域幅を使い、最大600Mbps
+
+### IEEE802.11ac
+IEEE802.11nよりも大幅に帯域幅を使うことでギガビットスループットを実現
+
+### IEEE802.11ax
+多数の端末が接続する高密度な環境において、周波数の利用効率を向上させた規格
+
+## PPP(Point-to-Point Protocol)
+一対一でコンピューターを接続するためのプロトコル
+OSI参照モデルの第２層に相当するデータリンクのプロトコル
+
+### LCP(Link Control Protocol)
+上位層に依存しないプロトコル
+コネクションの確立、切断、パケット長の設定、認証プロトコルの設定、通信品質の監視をするかどうかの設定などを行う。
+
+### NCP(Network Control Protocol)
+上位層に依存するプロトコル
+
+#### IPCP(IP Control Protocol)
+上位層がIPのときのNCP
+IPアドレスの設定や、TCP/IPのヘッダ圧縮をするかどうかのやりとりを行う。
+
+## 公衆アクセス網
+- アナログ電話回線
+- モバイル通信サービス
+- ADSL
+- FTTH(Fiver To The Home)
+- ケーブルテレビ
+- 専用回線
+- VPN(Virtual Private Network)
