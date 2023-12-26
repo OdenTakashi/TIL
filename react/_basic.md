@@ -1,0 +1,59 @@
+# React
+- ユーザーインタフェースをコンポーネントに分けて構築
+  - コンポーネントはJSの関数
+
+## JSX要素
+```js
+export default function Square() {
+  return　<button className="square">X</button>
+}
+```
+
+```js
+<button className="square">X</button>
+```
+
+この部分はJSX要素と呼ばれ、HTMLタグとJSのコードの組み合わせ
+
+```js
+export default function Square() {
+  return <button className="square">X</button><button className="square">X</button>;
+}
+```
+
+ボタンを複数用意したい場合は、こう書いてしまうと
+
+> /src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX Fragment <>...</>?
+
+というエラーが出てしまう。
+
+```js
+export default function Square() {
+  return (
+    <>
+      <button className="square">X</button>
+      <button className="square">X</button>
+    </>
+  );
+}
+```
+
+このように、一つのJSX要素として返す必要がある
+
+## propsの渡し方
+
+```js
+function Square({ value }) {
+  return <button className="square">{value}</button>;
+}
+
+export default function Board() {
+  return (
+    <div className="board-row">
+      <Square value="1" />
+    </div>
+  );
+}
+```
+
+波括弧で変数を囲い、Squareコンポーネントにprops指定
