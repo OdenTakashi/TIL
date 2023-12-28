@@ -57,3 +57,18 @@ export default function Board() {
 ```
 
 波括弧で変数を囲い、Squareコンポーネントにprops指定
+
+### アロー関数
+
+```js
+<Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+```
+
+関数を短く定義する方法
+
+### スプレッド構文
+```js
+setHistory([...history, nextSquares])
+```
+
+`histroy`の末尾に`nextSquares`を追加する
