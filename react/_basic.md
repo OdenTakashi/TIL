@@ -181,3 +181,16 @@ export default function Profile() {
   );
 }
 ```
+
+## CSS指定
+`style`に渡す値はJSオブジェクトとしてキャメルケースを渡す。
+
+```js
+function Item({ name, importance }) {
+  return (
+    <li style={{fontStyle: 'italic'}}>
+      {name}
+    </li>
+  );
+}
+```
