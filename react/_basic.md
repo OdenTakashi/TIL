@@ -225,3 +225,19 @@ export default function List() {
   return <ul>{listItems}</ul>;
 }
 ```
+
+## <Fragment>構文
+複数のDOMノードを渡す必要がある場合、<>..</>では`key`を渡せないため、より明示的な<Fragment>構文を渡す必要がある。
+
+```js
+import { Fragment } from 'react';
+
+// ...
+
+const listItems = people.map(person =>
+  <Fragment key={person.id}>
+    <h1>{person.name}</h1>
+    <p>{person.bio}</p>
+  </Fragment>
+);
+```
