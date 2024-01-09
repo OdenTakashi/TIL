@@ -226,6 +226,37 @@ export default function List() {
 }
 ```
 
+コンポーネントを複数レンダリングする際は、コンポーネントから返されるタグに`key`を渡すのではなく、コンポーネントに`key`を渡す
+```js
+import { recipes } from './data.js';
+
+function Recipe({ id, name, ingredients }) {
+  return (
+    <div>
+      <h2>{name}</h2>
+      <ul>
+        {ingredients.map(ingredient =>
+          <li key={ingredient}>
+            {ingredient}
+          </li>
+        )}
+      </ul>
+    </div>
+  );
+}
+
+export default function RecipeList() {
+  return (
+    <div>
+      <h1>Recipes</h1>
+      {recipes.map(recipe =>
+        <Recipe {...recipe} key={recipe.id} />
+      )}
+    </div>
+  );
+}
+```
+
 ## <Fragment>構文
 複数のDOMノードを渡す必要がある場合、<>..</>では`key`を渡せないため、より明示的な<Fragment>構文を渡す必要がある。
 
