@@ -227,6 +227,8 @@ export default function List() {
 ```
 
 コンポーネントを複数レンダリングする際は、コンポーネントから返されるタグに`key`を渡すのではなく、コンポーネントに`key`を渡す
+`Recipe`コンポーネントに対して`key`をpropsとしては渡せない。
+
 ```js
 import { recipes } from './data.js';
 
@@ -262,9 +264,8 @@ export default function RecipeList() {
 
 ```js
 import { Fragment } from 'react';
-
-// ...
-
+.
+.
 const listItems = people.map(person =>
   <Fragment key={person.id}>
     <h1>{person.name}</h1>
