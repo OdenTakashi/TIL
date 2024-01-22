@@ -322,3 +322,57 @@ export default function Button() {
   );
 }
 ```
+
+## イベント伝播
+
+イベントが発生した場所からツリーを上に向かって進んでいく
+-> `イベントがツリーをバブリング(bubble),伝播(propgate)する`と表現する
+
+以下の例では、最初に`button`の`onClick`が実行され、その後に親の`div`の`onClick`が実行される
+* `onScroll`はイベントが伝播しない
+
+```js
+export default function Toolbar() {
+  return (
+    <div className="Toolbar" onClick={() => {
+      alert('You clicked on the toolbar!');
+    }}>
+      <button onClick={() => alert('Playing!')}>
+        Play Movie
+      </button>
+      <button onClick={() => alert('Uploading!')}>
+        Upload Image
+      </button>
+    </div>
+  );
+}
+```
+
+### 伝播の停止
+
+イベントハンドラが受け取ったイベントオブジェクトを使用して伝播を止める
+
+以下のように、イベントオブジェクト`e`に対して`stopPropagation()`を呼び出す
+
+```js
+export default function Toolbar() {
+  return (
+    <div className="Toolbar" onClick={() => {
+      alert('You clicked on the toolbar!');
+    }}>
+      <button onClick={e => {
+        e.stopPropagation()
+        alert('Playing!')
+      }}>
+        Play Movie
+      </button>
+      <button onClick={e => {
+        e.stopPropagation()
+        alert('Uploading!')
+      }}>
+        Upload Image
+      </button>
+    </div>
+  );
+}
+```
