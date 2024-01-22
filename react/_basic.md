@@ -1,4 +1,5 @@
 # React
+- 時間の経過とともに変わっていくものを`state`と呼ぶ
 - ユーザーインタフェースをコンポーネントに分けて構築
   - コンポーネントはJSの関数
 - コンポーネントは準関数であると仮定している
@@ -273,4 +274,51 @@ const listItems = people.map(person =>
     <p>{person.bio}</p>
   </Fragment>
 );
+```
+
+## イベントハンドラ関数
+
+- `handle`というワードが先頭につく
+- コンポーネント内部で定義される
+
+```js
+export default function Button() {
+  function handleClick() {
+    alert('You clicked me!');
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Click me
+    </button>
+  );
+}
+```
+
+JSX内でインラインで定義することもできる。
+
+```js
+export default function Button() {
+  return (
+    <button onClick={function handleClick() {
+      alert('You clicked me!')
+    }}>
+      Click me
+    </button>
+  );
+}
+```
+
+またアロー関数で簡略化することも可能
+
+```js
+export default function Button() {
+  return (
+    <button onClick={() => {
+      alert('You clicked me!')
+    }}>
+      Click me
+    </button>
+  );
+}
 ```
