@@ -101,3 +101,45 @@ export default function Counter() {
   )
 }
 ```
+
+## stateは読み取り専用として扱う
+`state`は書き換えるべきではない
+理由として、`state`セット関数が使用されないとReactは変更を認識できないため
+-> レンダーがトリガーされない
+
+以下の例では`state`を直接置き換えているが、レンダーがトリガーされないため再描画がされない
+
+```js
+import { useState } from 'react';
+
+export default function MovingDot() {
+  const [position, setPosition] = useState({
+    x: 0,
+    y: 0
+  });
+
+  return (
+    <div
+      onPointerMove={e => {
+        position.x = e.clientX;
+        position.y = e.clientY;
+      }}
+      style={{
+        position: 'relative',
+        width: '100vw',
+        height: '100vh',
+      }}>
+  )
+}
+```
+
+以下のように`state`セット関数を用いて、新しいオブジェクトで置き換える必要がある
+
+```js
+<div
+  onPointerMove={e => {
+    x: e.clientX;
+    y: e.clientY;
+  }}
+>
+```
