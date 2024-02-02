@@ -213,6 +213,64 @@ export default function List() {
 ```
 
 ## 不要なstate変数
-- 矛盾の生じている変数
-`isTyping`と`isSubmitting`の両方が`true`になることはあり得ない
 
+- 関連するstateをグループ化する
+
+以下をような場合、2つの変数が常に同時に更新されるのであれば、単一のstate変数にまとめるべき
+
+```js
+// 2つのstate変数
+const [x, setX] = useState(0);
+const [y, setY] = useState(0);
+
+// 単一のstate変数
+const [position, setPosition] = useState({ x: 0, y: 0 });
+```
+
+- stateの矛盾を避ける
+
+`isSending`,`isSent`といった同時にtrueになり得ないstate変数は避ける
+
+- 冗長なstateは避ける
+
+以下のような他のstate変数から導き出せるようなstate変数は冗長
+
+```js
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [fullName, setFullName] = useState('');
+```
+
+以下のように導ける
+
+```js
+ const fullName = firstName + ' ' + lastName;
+```
+
+- state内の重複を避ける
+
+state間で重複があると、2箇所で更新をしなくてはいけない
+
+- 深くネストされたstateを避ける
+
+## propsをstateにコピーしない
+
+以下のようにpropsをstate変数で初期化している場合は、propsが更新された場合stateが更新されない
+
+```js
+function Message({ messageColor }) {
+  const [color, setColor] = useState(messageColor);
+  .
+  .
+}
+```
+
+そのため以下のようにローカル変数に置き換える必要がある
+
+```js
+function Message({ messageColor }) {
+  const color = messageColor
+  .
+  .
+}
+```
