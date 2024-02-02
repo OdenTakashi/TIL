@@ -211,3 +211,8 @@ export default function List() {
   );
 }
 ```
+
+## 不要なstate変数
+- 矛盾の生じている変数
+`isTyping`と`isSubmitting`の両方が`true`になることはあり得ない
+
