@@ -278,3 +278,8 @@ function Message({ messageColor }) {
   .
 }
 ```
+
+## コンポーネント間のstate共有
+
+- `props`経由で共有
+- 親コンポーネントで`state`を管理しつつ、子コンポーネントにイベントハントラを渡す
