@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import MemoList from './components/MemoList.js'
 
 function App() {
+  const memos = JSON.parse(localStorage.getItem("memos")) || []
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='h-screen'>
+      <header className='ml-6 mt-2'>
+        <p className='text-indigo-900 font-serif text-xl'>Memo App</p>
       </header>
+      <MemoList memoItems={memos}/>
     </div>
   );
 }
