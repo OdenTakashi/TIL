@@ -3,7 +3,7 @@ import EditForm from './EditForm.js'
 export default function MemoList({memoItems, editable, handleClick}) {
   const memoLists = memoItems.map(memo => {
     return(
-      <p>{memo}</p>
+      <p>{memo.body}</p>
     )
   })
 
