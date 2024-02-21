@@ -1,12 +1,21 @@
-export default function EditForm({isEditable}) {
+export default function EditForm({isEditable, memoLists, storeMemo, handleEditMode}) {
   function saveMemo() {
     let element = document.getElementById('content')
-    localStorage.setItem('memos', JSON.stringify([{"id": "1", "body": element.value}]))
+    let serialNumber = setSerialNumber()
+
+    storeMemo({serialNumber, element})
+    localStorage.setItem('memos', JSON.stringify(memoLists))
+
+    handleEditMode()
+  }
+
+  function setSerialNumber() {
+    return memoLists.length === 0 ? 1 : memoLists[memoLists.length - 1].id + 1
   }
 
   if(isEditable) {
     return (
-      <div className='text-sm'>
+      <div className='text-sm w-1/2 m-auto mt-6'>
         <textarea className='border' id='content'></textarea>
         <div>
           <button className='border' onClick={saveMemo}>Save</button>
