@@ -1,9 +1,9 @@
 import EditForm from './EditForm.js'
 
-export default function MemoList({memoItems, editable, handleClick}) {
+export default function MemoList({memoItems, editable, handleClick, pushMemo}) {
   const memoLists = memoItems.map(memo => {
     return(
-      <p>{memo.body}</p>
+      <p key={memo.id}>{memo.body}</p>
     )
   })
 
@@ -16,8 +16,8 @@ export default function MemoList({memoItems, editable, handleClick}) {
           {memoLists}
           <button onClick={handleClick}>+</button>
         </div>
-        <EditForm isEditable={editable} handleClick={handleClick}/>
       </div>
+      <EditForm isEditable={editable} memoLists={memoItems} storeMemo={pushMemo} handleEditMode={handleClick}/>
     </div>
   )
 }
