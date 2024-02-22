@@ -1,9 +1,15 @@
 import EditForm from './EditForm.js'
 
-export default function MemoList({memoItems, editable, handleClick, pushMemo}) {
+export default function List({memoItems, editable, handleClick, pushMemo, formContent, handleFormContent}) {
   const memoLists = memoItems.map(memo => {
     return(
-      <p key={memo.id}>{memo.body}</p>
+      <p key={memo.id} onClick={() => {
+        handleClick()
+        handleFormContent(memo.body)
+      }}
+      >
+        {memo.body}
+      </p>
     )
   })
 
@@ -17,7 +23,7 @@ export default function MemoList({memoItems, editable, handleClick, pushMemo}) {
           <button onClick={handleClick}>+</button>
         </div>
       </div>
-      <EditForm isEditable={editable} memoLists={memoItems} storeMemo={pushMemo} handleEditMode={handleClick}/>
+      <EditForm isEditable={editable} memoLists={memoItems} storeMemo={pushMemo} handleEditMode={handleClick} formContent={formContent} handleFormContent={handleFormContent}/>
     </div>
   )
 }

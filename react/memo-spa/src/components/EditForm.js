@@ -1,9 +1,9 @@
-export default function EditForm({isEditable, memoLists, storeMemo, handleEditMode}) {
+export default function EditForm({isEditable, memoLists, storeMemo, handleEditMode, formContent, handleFormContent}) {
   function saveMemo() {
-    let element = document.getElementById('content')
     let serialNumber = setSerialNumber()
 
-    storeMemo({serialNumber, element})
+    storeMemo({serialNumber})
+    debugger
     localStorage.setItem('memos', JSON.stringify(memoLists))
 
     handleEditMode()
@@ -16,7 +16,7 @@ export default function EditForm({isEditable, memoLists, storeMemo, handleEditMo
   if(isEditable) {
     return (
       <div className='text-sm w-1/2 m-auto mt-6'>
-        <textarea className='border' id='content'></textarea>
+        <textarea className='border' id='content' value={formContent} onChange={(e) => handleFormContent(e.target.value)}></textarea>
         <div>
           <button className='border' onClick={saveMemo}>Save</button>
         </div>
