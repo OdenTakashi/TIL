@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 function App() {
   const [memos, setMemos] = useState(JSON.parse(localStorage.getItem("memos")) || [])
-  const [isEditable, setIsEditable] = useState(false)
+  const [isEditable, setIsEditable] = useState('')
   const [context, setContext] = useState('')
 
 
@@ -16,12 +16,21 @@ function App() {
     )
   }
 
-  function handleEditMode() {
-    setContext('')
-    setIsEditable(!isEditable)
+  function deleteMemo(memoLists) {
+    setMemos(memoLists)
   }
 
-  function handleFormContent(content) {
+  function handleEditMode(number) {
+    setContext('')
+    setIsEditable(number)
+  }
+
+  function handleFormContent({content, number}) {
+    setIsEditable(number)
+    setContext(content)
+  }
+
+  function updateContent(content) {
     setContext(content)
   }
 
@@ -30,7 +39,7 @@ function App() {
       <header className='ml-6 mt-2'>
         <p className='text-indigo-900 font-serif text-xl'>Memo App</p>
       </header>
-      <List memoItems={memos} editable={isEditable} handleClick={handleEditMode} pushMemo={saveMemo} formContent={context} handleFormContent={handleFormContent}/>
+      <List deleteFunction={deleteMemo} memoItems={memos} editable={isEditable} handleClick={handleEditMode} pushMemo={saveMemo} formContent={context} handleFormContent={handleFormContent} updateContent={updateContent}/>
     </div>
   );
 }

@@ -1,15 +1,31 @@
 import EditForm from './EditForm.js'
 
-export default function List({memoItems, editable, handleClick, pushMemo, formContent, handleFormContent}) {
+export default function List({deleteFunction, memoItems, editable, handleClick, pushMemo, formContent, handleFormContent, updateContent}) {
+  function setSerialNumber() {
+    return memoItems.length === 0 ? 1 : memoItems[memoItems.length - 1].id + 1
+  }
+
+  function deleteMemo(memo) {
+    const memos = memoItems.concat()
+    const nextMemos = memos.filter(m => {
+      return (m.id !== memo.id)
+    })
+    deleteFunction(nextMemos)
+    localStorage.setItem('memos', JSON.stringify(nextMemos))
+  }
+
   const memoLists = memoItems.map(memo => {
     return(
-      <p key={memo.id} onClick={() => {
-        handleClick()
-        handleFormContent(memo.body)
-      }}
-      >
-        {memo.body}
-      </p>
+      <div className='flex'>
+        <p className='cursor-pointer' key={memo.id} onClick={() => {
+          handleClick()
+          handleFormContent({context: memo.body, number: memo.id})
+        }}
+        >
+          {memo.body}
+        </p>
+        <button className='ml-3' onClick={() => deleteMemo(memo)}>delete</button>
+      </div>
     )
   })
 
@@ -20,10 +36,10 @@ export default function List({memoItems, editable, handleClick, pushMemo, formCo
       <div className='flex'>
         <div className='mt-6 w-1/2 h-1/2 m-auto bg-white text-zinc-600 text-sm'>
           {memoLists}
-          <button onClick={handleClick}>+</button>
+          <button onClick={() => handleClick(setSerialNumber())}>+</button>
         </div>
       </div>
-      <EditForm isEditable={editable} memoLists={memoItems} storeMemo={pushMemo} handleEditMode={handleClick} formContent={formContent} handleFormContent={handleFormContent}/>
+      <EditForm isEditable={editable} memoLists={memoItems} storeMemo={pushMemo} handleEditMode={handleClick} formContent={formContent} updateContent={updateContent}/>
     </div>
   )
 }
