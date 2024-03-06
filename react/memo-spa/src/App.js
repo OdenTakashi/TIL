@@ -7,12 +7,9 @@ function App() {
   const [context, setContext] = useState('')
 
 
-  function saveMemo({serialNumber}) {
+  function saveMemo(memos) {
     setMemos(
-      [
-        ...memos,
-        {"id": serialNumber, "body": context}
-      ]
+      memos
     )
   }
 
