@@ -25,9 +25,9 @@ function App() {
     setIsEditable(number)
   }
 
-  function handleFormContent({content, number}) {
+  function handleFormContent({context, number}) {
     setIsEditable(number)
-    setContext(content)
+    setContext(context)
   }
 
   function updateContent(content) {
