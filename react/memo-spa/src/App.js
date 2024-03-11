@@ -1,4 +1,5 @@
 import List from './components/List.js'
+import EditForm from './components/EditForm.js'
 import { useState } from 'react';
 
 function App() {
@@ -7,14 +8,8 @@ function App() {
   const [context, setContext] = useState('')
 
 
-  function saveMemo(memos) {
-    setMemos(
-      memos
-    )
-  }
-
-  function deleteMemo(memoLists) {
-    setMemos(memoLists)
+  function updateMemo(memos) {
+    setMemos(memos) 
   }
 
   function handleEditMode(number) {
@@ -36,7 +31,8 @@ function App() {
       <header className='ml-6 mt-2'>
         <p className='text-indigo-900 font-serif text-xl'>Memo App</p>
       </header>
-      <List deleteFunction={deleteMemo} memoItems={memos} editable={isEditable} handleClick={handleEditMode} pushMemo={saveMemo} formContent={context} handleFormContent={handleFormContent} updateContent={updateContent}/>
+      <List updateMemo={updateMemo} memoItems={memos} handleClick={handleEditMode} handleFormContent={handleFormContent}/>
+      <EditForm updateMemo={updateMemo} isEditable={isEditable} memoLists={memos} handleEditMode={handleEditMode} formContent={context} updateContent={updateContent}/>
     </div>
   );
 }

@@ -1,6 +1,4 @@
-import EditForm from './EditForm.js'
-
-export default function List({deleteFunction, memoItems, editable, handleClick, pushMemo, formContent, handleFormContent, updateContent}) {
+export default function List({updateMemo, memoItems, handleClick, handleFormContent}) {
   function setSerialNumber() {
     return memoItems.length === 0 ? 1 : memoItems[memoItems.length - 1].id + 1
   }
@@ -10,7 +8,7 @@ export default function List({deleteFunction, memoItems, editable, handleClick, 
     const nextMemos = memos.filter(m => {
       return (m.id !== memo.id)
     })
-    deleteFunction(nextMemos)
+    updateMemo(nextMemos)
     localStorage.setItem('memos', JSON.stringify(nextMemos))
   }
 
@@ -18,7 +16,6 @@ export default function List({deleteFunction, memoItems, editable, handleClick, 
     return(
       <div className='flex'>
         <p className='cursor-pointer' key={memo.id} onClick={() => {
-          handleClick()
           handleFormContent({context: memo.body, number: memo.id})
         }}
         >
@@ -39,7 +36,6 @@ export default function List({deleteFunction, memoItems, editable, handleClick, 
           <button onClick={() => handleClick(setSerialNumber())}>+</button>
         </div>
       </div>
-      <EditForm isEditable={editable} memoLists={memoItems} storeMemo={pushMemo} handleEditMode={handleClick} formContent={formContent} updateContent={updateContent}/>
     </div>
   )
 }
