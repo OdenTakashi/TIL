@@ -16,7 +16,6 @@ export default function List({updateMemo, memoItems, handleClick, handleFormCont
     return(
       <div className='flex'>
         <p className='cursor-pointer' key={memo.id} onClick={() => {
-          handleClick()
           handleFormContent({context: memo.body, number: memo.id})
         }}
         >
