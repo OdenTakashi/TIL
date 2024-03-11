@@ -1,16 +1,14 @@
 export default function EditForm({isEditable, memoLists, storeMemo, handleEditMode, formContent, updateContent}) {
   const editingNumber = isEditable
-  const memos = memoLists
 
-  function saveMemo(number, memoList) {
+  function saveMemo(number) {
     let serialNumber = setSerialNumber()
     let element = document.getElementById('content')
 
-    if(number <= memoList.length) {
-      const items = memoList.filter ((memo) => memo.id !== number)
+    if(number <= memoLists.length) {
+      const items = memoLists.filter ((memo) => memo.id !== number)
       items.push({id: number, body: element.value})
       storeMemo(items)
-      debugger
       localStorage.setItem('memos', JSON.stringify(items)) 
       handleEditMode()
     } else {
@@ -31,7 +29,7 @@ export default function EditForm({isEditable, memoLists, storeMemo, handleEditMo
       <div className='text-sm w-1/2 m-auto mt-6'>
         <textarea className='border' id='content' value={formContent} onChange={(e) => updateContent(e.target.value)}></textarea>
         <div>
-          <button className='border' onClick={() => saveMemo(editingNumber, memos)}>Save</button>
+          <button className='border' onClick={() => saveMemo(editingNumber)}>Save</button>
         </div>
       </div>
     )
