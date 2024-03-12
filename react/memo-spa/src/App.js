@@ -31,7 +31,7 @@ function App() {
       <header className='ml-6 mt-2'>
         <p className='text-indigo-900 font-serif text-xl'>Memo App</p>
       </header>
-      <List updateMemo={updateMemo} memoItems={memos} handleClick={handleEditMode} handleFormContent={handleFormContent}/>
+      <List memoItems={memos} handleClick={handleEditMode} handleFormContent={handleFormContent}/>
       <EditForm updateMemo={updateMemo} isEditable={isEditable} memoLists={memos} handleEditMode={handleEditMode} formContent={context} updateContent={updateContent}/>
     </div>
   );

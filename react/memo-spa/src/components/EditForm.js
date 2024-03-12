@@ -12,6 +12,15 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
     handleEditMode()
   }
 
+  function deleteMemo() {
+    if (memoLists.some((memo) => memo.id === editingNumber)) {
+      const memos = memoLists.filter((memo) => memo.id !== editingNumber)
+      updateMemo(memos)
+      localStorage.setItem('memos', JSON.stringify(memos))
+    }
+    handleEditMode()
+  }
+
   if(isEditable) {
     return (
       <div className='text-sm w-1/2 m-auto mt-6'>
@@ -20,6 +29,7 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
           <div>
             <button className='border p-1' onClick={() => saveMemo(editingNumber)}>Save</button>
             <button className='border ml-3 p-1' onClick={() => handleEditMode('')}>Cancel</button>
+            <button className='ml-3' onClick={() => deleteMemo()}>delete</button>
           </div>
         </div>
       </div>
