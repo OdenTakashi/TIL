@@ -1,15 +1,6 @@
-export default function List({updateMemo, memoItems, handleClick, handleFormContent}) {
+export default function List({memoItems, handleClick, handleFormContent}) {
   function setSerialNumber() {
     return memoItems.length === 0 ? 1 : memoItems[memoItems.length - 1].id + 1
-  }
-
-  function deleteMemo(memo) {
-    const memos = memoItems.concat()
-    const nextMemos = memos.filter(m => {
-      return (m.id !== memo.id)
-    })
-    updateMemo(nextMemos)
-    localStorage.setItem('memos', JSON.stringify(nextMemos))
   }
 
   const memoLists = memoItems.map(memo => {
@@ -21,7 +12,6 @@ export default function List({updateMemo, memoItems, handleClick, handleFormCont
         >
           {memo.body}
         </p>
-        <button className='ml-3' onClick={() => deleteMemo(memo)}>delete</button>
       </div>
     )
   })
