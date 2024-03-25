@@ -10,7 +10,7 @@ export default function List({memoItems, handleClick, handleFormContent}) {
           handleFormContent({context: memo.body, number: memo.id})
         }}
         >
-          {memo.body}
+          {memo.title}
         </p>
       </div>
     )
