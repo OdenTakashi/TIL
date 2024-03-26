@@ -4,12 +4,16 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
   function saveMemo(number) {
     let element = document.getElementById('content')
 
-    const memos = number <= memoLists.length ? memoLists.filter ((memo) => memo.id !== number) :  memoLists.concat()
+    if (element.value) {
+      const memos = number <= memoLists.length ? memoLists.filter ((memo) => memo.id !== number) :  memoLists.concat()
 
-    memos.push({id: editingNumber, title: element.value.split(/\n/)[0], body: element.value})
-    updateMemo(memos)
-    localStorage.setItem('memos', JSON.stringify(memos))
-    handleEditMode()
+      memos.push({id: editingNumber, title: element.value.split(/\n/)[0], body: element.value})
+      updateMemo(memos)
+      localStorage.setItem('memos', JSON.stringify(memos))
+      handleEditMode()
+    } else {
+      alert('メモを追加してください')
+    }
   }
 
   function deleteMemo() {
