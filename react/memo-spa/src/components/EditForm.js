@@ -6,7 +6,7 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
 
     const memos = number <= memoLists.length ? memoLists.filter ((memo) => memo.id !== number) :  memoLists.concat()
 
-    memos.push({id: editingNumber, body: element.value})
+    memos.push({id: editingNumber, title: element.value.split(/\n/)[0], body: element.value})
     updateMemo(memos)
     localStorage.setItem('memos', JSON.stringify(memos))
     handleEditMode()

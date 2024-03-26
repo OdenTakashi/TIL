@@ -5,12 +5,12 @@ export default function List({memoItems, handleClick, handleFormContent}) {
 
   const memoLists = memoItems.map(memo => {
     return(
-      <div className='flex'>
-        <p className='cursor-pointer' key={memo.id} onClick={() => {
+      <div className='flex' key={memo.id}>
+        <p className='cursor-pointer' onClick={() => {
           handleFormContent({context: memo.body, number: memo.id})
         }}
         >
-          {memo.body}
+          {memo.title}
         </p>
       </div>
     )
