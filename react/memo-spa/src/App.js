@@ -26,11 +26,16 @@ function App() {
     setContext(content)
   }
 
+  function runningMode() {
+    return isEditable ? '編集中' : '一覧'
+  }
+
   return (
     <div className='h-screen'>
       <header className='ml-6 mt-2'>
         <p className='text-indigo-900 font-serif text-xl'>Memo App</p>
       </header>
+      <div className='w-1/2 m-auto mt-3 text-xl text-zinc-700 font-semibold'>{runningMode()}</div>
       <List memoItems={memos} handleClick={handleEditMode} handleFormContent={handleFormContent}/>
       <EditForm updateMemo={updateMemo} isEditable={isEditable} memoLists={memos} handleEditMode={handleEditMode} formContent={context} updateContent={updateContent}/>
     </div>
