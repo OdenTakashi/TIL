@@ -1,6 +1,6 @@
 export default function EditForm({isEditable, memoLists, updateMemo, handleEditMode, formContent, updateContent}) {
   const editingNumber = isEditable
-
+  const memoPlaceholder = 'TODO: Today Task \n- Running \n- Coding'
   function saveMemo(number) {
     let element = document.getElementById('content')
 
@@ -29,11 +29,11 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
     return (
       <div className='text-sm w-1/2 m-auto mt-6'>
         <div className='mx-auto w-1/2'>
-          <textarea className='border' id='content' placeholder='TODO: shopping' value={formContent} onChange={(e) => updateContent(e.target.value)}></textarea>
-          <div>
-            <button className='border p-1' onClick={() => saveMemo(editingNumber)}>Save</button>
-            <button className='border ml-3 p-1' onClick={() => handleEditMode('')}>Cancel</button>
-            <button className='border p-1 ml-3' onClick={() => deleteMemo()}>delete</button>
+          <textarea className='border rounded p-2' rows='10' cols='50' id='content' placeholder={memoPlaceholder} value={formContent} onChange={(e) => updateContent(e.target.value)}></textarea>
+          <div className='flex justify-end items-end mt-3 m-auto'>
+            <button className='w-1/3 h-10 bg-indigo-700 text-white border p-1 rounded hover:bg-indigo-800' onClick={() => saveMemo(editingNumber)}>保存</button>
+            <button className='ml-3 p-1 rounded underline text-xs hover:no-underline' onClick={() => handleEditMode('')}>キャンセル</button>
+            <button className='p-1 ml-3 rounded underline text-xs hover:no-underline' onClick={() => deleteMemo()}>削除</button>
           </div>
         </div>
       </div>
