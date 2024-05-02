@@ -1,6 +1,7 @@
 export default function EditForm({isEditable, memoLists, updateMemo, handleEditMode, formContent, updateContent}) {
   const editingNumber = isEditable
   const memoPlaceholder = 'TODO: Today Task \n- Running \n- Coding'
+
   function saveMemo(number) {
     let element = document.getElementById('content')
 
