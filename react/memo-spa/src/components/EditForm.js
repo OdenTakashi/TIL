@@ -3,18 +3,34 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
   const memoPlaceholder = 'TODO: Today Task \n- Running \n- Coding'
 
   function saveMemo(number) {
-    let element = document.getElementById('content')
+    const element = document.getElementById('content')
 
-    if (element.value) {
-      const memos = number <= memoLists.length ? memoLists.filter ((memo) => memo.id !== number) :  memoLists.concat()
-
-      memos.push({id: editingNumber, title: element.value.split(/\n/)[0], body: element.value})
-      updateMemo(memos)
-      localStorage.setItem('memos', JSON.stringify(memos))
-      handleEditMode()
-    } else {
-      alert('メモを追加してください')
+    if (!element.value) {
+      alert('Warning: Add Memo Content')
+      return
     }
+
+    const memos = number <= memoLists.length ? updatingMemo(number, element) : createMemo(number, element)
+
+    updateMemo(memos)
+    localStorage.setItem('memos', JSON.stringify(memos))
+    handleEditMode()
+  }
+
+  function createMemo(number, element) {
+    const memos = memoLists.concat()
+    memos.push({id: number, title: element.value.split(/\n/)[0], body: element.value})
+    return memos
+  }
+
+  function updatingMemo(number, element) {
+    return memoLists.map((memo) => {
+      if (memo.id === number) {
+        return {id: editingNumber, title: element.value.split(/\n/)[0], body: element.value}
+      } else {
+        return memo
+      }
+    })
   }
 
   function deleteMemo() {
