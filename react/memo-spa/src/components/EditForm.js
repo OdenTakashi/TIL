@@ -18,8 +18,7 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
   }
 
   function createMemo(number, element) {
-    const memos = memoLists.concat()
-    memos.push({id: number, title: element.value.split(/\n/)[0], body: element.value})
+    const memos = [...memoLists, {id: number, title: element.value.split(/\n/)[0], body: element.value}]
     return memos
   }
 
