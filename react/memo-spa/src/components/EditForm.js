@@ -5,7 +5,7 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
   function saveMemo(number) {
     const element = document.getElementById('content')
 
-    if (!element.value) {
+    if (!element.value || !element.value.match(/\S/g)) {
       alert('Warning: Add Memo Content')
       return
     }
@@ -13,13 +13,11 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
     const memos = number <= memoLists.length ? updatingMemo(number, element) : createMemo(number, element)
 
     updateMemo(memos)
-    localStorage.setItem('memos', JSON.stringify(memos))
     handleEditMode()
   }
 
   function createMemo(number, element) {
-    const memos = memoLists.concat()
-    memos.push({id: number, title: element.value.split(/\n/)[0], body: element.value})
+    const memos = [...memoLists, {id: number, title: element.value.split(/\n/)[0], body: element.value}]
     return memos
   }
 
@@ -46,7 +44,7 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
     return (
       <div className='text-sm w-1/2 m-auto mt-6'>
         <div className='mx-auto w-1/2'>
-          <textarea className='border rounded p-2' rows='10' cols='50' id='content' placeholder={memoPlaceholder} value={formContent} onChange={(e) => updateContent(e.target.value)}></textarea>
+          <textarea className='border rounded p-2' rows='10' cols='50' id='content' required placeholder={memoPlaceholder} value={formContent} onChange={(e) => updateContent(e.target.value)}></textarea>
           <div className='flex justify-end mt-3 m-auto'>
             <button className='w-1/3 h-10 bg-indigo-700 text-white border p-1 rounded hover:bg-indigo-800' onClick={() => saveMemo(editingNumber)}>保存</button>
             <button className='ml-3 p-1 rounded underline text-xs hover:no-underline' onClick={() => handleEditMode('')}>キャンセル</button>

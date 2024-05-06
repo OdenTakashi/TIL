@@ -1,12 +1,16 @@
 import List from './components/List.js'
 import EditForm from './components/EditForm.js'
 import { useState } from 'react';
+import { useEffect } from 'react'
 
 function App() {
   const [memos, setMemos] = useState(JSON.parse(localStorage.getItem("memos")) || [])
   const [isEditable, setIsEditable] = useState('')
   const [context, setContext] = useState('')
 
+  useEffect(() => {
+    localStorage.setItem('memos', JSON.stringify(memos))
+  }, [memos])
 
   function updateMemo(memos) {
     setMemos(memos) 
