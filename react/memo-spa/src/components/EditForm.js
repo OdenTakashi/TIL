@@ -13,7 +13,6 @@ export default function EditForm({isEditable, memoLists, updateMemo, handleEditM
     const memos = number <= memoLists.length ? updatingMemo(number, element) : createMemo(number, element)
 
     updateMemo(memos)
-    localStorage.setItem('memos', JSON.stringify(memos))
     handleEditMode()
   }
 
