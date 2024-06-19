@@ -6,7 +6,7 @@ export default function List({memoItems, handleClick, handleFormContent}) {
   const memoLists = memoItems.map(memo => {
     return(
       <div className='flex' key={memo.id}>
-        <p className='text-xl cursor-pointer' onClick={() => {
+        <p className='text-xl cursor-pointer underline hover:no-underline' onClick={() => {
           handleFormContent({context: memo.body, number: memo.id})
         }}
         >
