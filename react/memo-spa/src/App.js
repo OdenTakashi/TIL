@@ -13,7 +13,7 @@ function App() {
   }, [memos])
 
   function updateMemo(memos) {
-    setMemos(memos) 
+    setMemos(memos)
   }
 
   function handleEditMode(number) {
