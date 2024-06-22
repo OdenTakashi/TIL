@@ -1,7 +1,6 @@
 import List from './components/List.js'
 import EditForm from './components/EditForm.js'
-import { useState } from 'react';
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
   const [memos, setMemos] = useState(JSON.parse(localStorage.getItem("memos")) || [])
