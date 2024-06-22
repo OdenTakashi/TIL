@@ -1,5 +1,6 @@
-import List from './components/List.js'
-import EditForm from './components/EditForm.js'
+import List from './components/List'
+import EditForm from './components/EditForm'
+import Header from './components/Header'
 import { useState, useEffect } from 'react'
 
 function App() {
@@ -35,10 +36,8 @@ function App() {
 
   return (
     <div className='h-screen'>
-      <header className='ml-6 mt-2'>
-        <p className='text-indigo-900 font-serif text-xl'>Memo App</p>
-      </header>
-      <div className='w-1/2 m-auto mt-3 text-xl text-zinc-700 font-semibold'>{runningMode()}</div>
+      <Header/>
+     <div className='w-1/2 m-auto mt-3 text-xl text-zinc-700 font-semibold'>{runningMode()}</div>
       <List memoItems={memos} handleClick={handleEditMode} handleFormContent={handleFormContent}/>
       <EditForm updateMemo={updateMemo} isEditable={isEditable} memoLists={memos} handleEditMode={handleEditMode} formContent={context} updateContent={updateContent}/>
     </div>
