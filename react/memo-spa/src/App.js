@@ -1,19 +1,21 @@
-import List from './components/List.js'
-import EditForm from './components/EditForm.js'
-import { useState } from 'react';
-import { useEffect } from 'react'
+import List from './components/List'
+import EditForm from './components/EditForm'
+import Header from './components/Header'
+import { useState, useEffect } from 'react'
+import { LoginContext } from './context/loginContext'
 
 function App() {
   const [memos, setMemos] = useState(JSON.parse(localStorage.getItem("memos")) || [])
   const [isEditable, setIsEditable] = useState('')
   const [context, setContext] = useState('')
+  const [loginStatus, setLoginStatus] = useState(false)
 
   useEffect(() => {
     localStorage.setItem('memos', JSON.stringify(memos))
   }, [memos])
 
   function updateMemo(memos) {
-    setMemos(memos) 
+    setMemos(memos)
   }
 
   function handleEditMode(number) {
@@ -36,12 +38,12 @@ function App() {
 
   return (
     <div className='h-screen'>
-      <header className='ml-6 mt-2'>
-        <p className='text-indigo-900 font-serif text-xl'>Memo App</p>
-      </header>
-      <div className='w-1/2 m-auto mt-3 text-xl text-zinc-700 font-semibold'>{runningMode()}</div>
-      <List memoItems={memos} handleClick={handleEditMode} handleFormContent={handleFormContent}/>
-      <EditForm updateMemo={updateMemo} isEditable={isEditable} memoLists={memos} handleEditMode={handleEditMode} formContent={context} updateContent={updateContent}/>
+      <LoginContext.Provider value={{loginStatus, setLoginStatus}}>
+        <Header/>
+        <div className='w-1/2 m-auto mt-3 text-xl text-zinc-700 font-semibold'>{runningMode()}</div>
+        <List memoItems={memos} handleClick={handleEditMode} handleFormContent={handleFormContent}/>
+        <EditForm updateMemo={updateMemo} isEditable={isEditable} memoLists={memos} handleEditMode={handleEditMode} formContent={context} updateContent={updateContent}/>
+      </LoginContext.Provider>
     </div>
   );
 }
