@@ -46,3 +46,33 @@ irb(main):016:0> a.object_id
 irb(main):017:0> b.object_id
 => 30680
 ```
+
+## ::について
+以下のようにA::BとするとAの中に定義されているBクラスということを表現できる。
+
+```rb
+irb(main):001* class Out
+irb(main):002*   class Inside
+irb(main):003*     def greeting
+irb(main):004*       puts 'Hello Iam inside'
+irb(main):005*     end
+irb(main):006*   end
+irb(main):007> end
+irb(main):009> inside_obj = Out::Inside.new
+=> #<Out::Inside:0x0000000102567c70>
+irb(main):010> inside_obj.greeting
+Hello Iam inside
+```
+moduleでも同じように動く
+```rb
+irb(main):001* module Out
+irb(main):002*   module Inside
+irb(main):003*     def greeting
+irb(main):004*       puts 'Hello Iam Inside'
+irb(main):005*     end
+irb(main):006*   end
+irb(main):007> end
+irb(main):011> include Out::Inside
+irb(main):012> Out::Inside.greeting
+Hello Iam Inside
+```
