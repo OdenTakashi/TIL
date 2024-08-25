@@ -17,3 +17,15 @@ def hoge_validation
   throw(:abort)
 end
 ```
+
+## メソッドの条件分岐にならってspecを書く
+以下のようにメソッドに複数の条件がある場合を考える
+```rb
+def hogehoge
+  if aaaa
+  elsif bbbb
+  elsif cccc
+  end
+end
+```
+spec上ではaaaa -> bbbb -> ccccの順番でspecを書いてあげると、可読性が上がる
