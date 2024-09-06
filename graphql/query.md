@@ -77,7 +77,7 @@ query {
 ```
 
 ## GraphQL変数：クエリに動的に引数を渡します
-$limit数のtodoを取得する
+$limit数のtodoを取得する場合
 
 ```
 query ($limit: Int!) {
@@ -85,5 +85,13 @@ query ($limit: Int!) {
     id
     title
   }
+}
+```
+
+上記のクエリに加えて以下の変数オブジェクトも送信
+
+```
+{
+   "limit": 10
 }
 ```
