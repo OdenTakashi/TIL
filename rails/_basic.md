@@ -142,3 +142,10 @@ end
 parent.create! do |parent|
   parent.build_child(args)
 end
+
+## find, find_by
+findはPKとしてIDを指定する。
+戻り値はレコードがある場合はクラスのインスタンス、ない場合はActiveRecord::RecordNotFoundを返す
+
+find_byはID以外のカラムで検索。
+戻り値はクラスのインスタンス、ない場合はnilを返す
