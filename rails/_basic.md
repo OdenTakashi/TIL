@@ -149,3 +149,34 @@ findはPKとしてIDを指定する。
 
 find_byはID以外のカラムで検索。
 戻り値はクラスのインスタンス、ない場合はnilを返す
+
+## where
+複数件レコードを検索する。
+戻り値はActiveRecord::Relationクラスのインスタンス
+
+### ActiveRecord::Relation
+SQLを書くようにrubyのメソッドでクエリ構築を行える。
+検索メソッドを呼ぶだけではSQLは発行されない。
+Enumerableメソッドや出力メソッドを利用した際に発行される。
+
+## LIKE句
+あいまい検索をする際に利用する。
+以下のように記述するとBookから始まるnameを持つBookレコードを検索してくれる。
+
+```rb
+Book.where("name like ?", "Book%")
+```
+この際に気をつけるのが引数を取る際には、ワイルドカードがエスケープされないという点
+このように引数にワイルドカードが入っていた場合は`%ok%`として認識されてしまう。
+
+```rb
+book-admin(dev)> str_including_wild_card = "%ok"
+=> "%ok"
+book-admin(dev)> Book.where("name like ?", "#{str_including_wild_card}%")
+```
+
+その際は引数ないのワイルドカードをエスケープする必要がある。
+
+```rb
+book-admin(dev)> Book.where("name like ?", Book.sanitize_sql_like(str_including_wild_card) + "%")
+```
