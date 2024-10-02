@@ -180,3 +180,55 @@ book-admin(dev)> Book.where("name like ?", "#{str_including_wild_card}%")
 ```rb
 book-admin(dev)> Book.where("name like ?", Book.sanitize_sql_like(str_including_wild_card) + "%")
 ```
+
+## scope
+利用頻度の高い検索条件を定義して再利用可能にする
+scope内でfind_byを利用する際の注意点
+
+以下のように実行するとscopeがnilを返す場合は、デフォルトスコープ(ここではBook.all)が実行され、ActiveRecord::Relationが返却される
+```rb
+class Book < ApplicationRecord
+  scope :find_price, ->(price) { where(find_by(price:)) }
+end
+
+
+book-admin(dev)> Book.find_price(10000)
+  Book Load (0.3ms)  SELECT "books".* FROM "books" WHERE "books"."price" = ? LIMIT ?  [["price", 10000], ["LIMIT", 1]]
+  Book Load (0.1ms)  SELECT "books".* FROM "books" /* loading for pp */ LIMIT ?  [["LIMIT", 11]]
+=>
+[#<Book:0x00000001206aca90
+  id: 1,
+  name: "Book 1",
+  published_on: "2019-11-24",
+  price: 1000,
+  created_at: "2024-09-30 13:03:44.846541000 +0000",
+  updated_at: "2024-09-30 13:03:44.846541000 +0000">,
+ #<Book:0x000000011f39e9d0
+  id: 2,
+  name: "Book 2",
+  published_on: "2019-10-24",
+  price: 2000,
+  created_at: "2024-09-30 13:03:44.850462000 +0000",
+  updated_at: "2024-09-30 13:03:44.850462000 +0000">,
+ #<Book:0x000000011f39e890
+  id: 3,
+  name: "Book 3",
+  published_on: "2019-09-24",
+  price: 3000,
+  created_at: "2024-09-30 13:03:44.851958000 +0000",
+  updated_at: "2024-09-30 13:03:44.851958000 +0000">,
+ #<Book:0x000000011f39e610
+  id: 4,
+  name: "Book 4",
+  published_on: "2019-08-24",
+  price: 4000,
+  created_at: "2024-09-30 13:03:44.853341000 +0000",
+  updated_at: "2024-09-30 13:03:44.853341000 +0000">,
+ #<Book:0x000000011f39e4d0
+  id: 5,
+  name: "Book 5",
+  published_on: "2019-07-24",
+  price: 5000,
+  created_at: "2024-09-30 13:03:44.854401000 +0000",
+  updated_at: "2024-09-30 13:03:44.854401000 +0000">]
+```
