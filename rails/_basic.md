@@ -232,3 +232,48 @@ book-admin(dev)> Book.find_price(10000)
   created_at: "2024-09-30 13:03:44.854401000 +0000",
   updated_at: "2024-09-30 13:03:44.854401000 +0000">]
 ```
+
+## validates :hogehoge, numeriality: ~~~
+属性の数値のみが使われていることをバリデーションする。
+### option
+
+#### only_integer
+`validates :price, numericality: { only_integer: true }`
+`/\A[+-]?\d+\z/`の正規表現を利用してマッチングが行われる
+デフォルトのエラーメッセージは「must be an integer」
+
+#### greater_than
+指定の値よりも大き苦なければいけないことを表現
+デフォルトのエラーメッセージは、「must be greater than %{count}」
+
+#### greater_than_or_equal_to
+指定の値以上でないければいけないことを表現
+デフォルトのエラーメッセージは「must be greater than or equal to %{count}」
+
+#### equal_to
+指定した値と一致している必要があることを表現
+デフォルトのエラーメッセージは「must be greater than or equal to %{count}」
+
+#### less_than
+指定した値よりも小さくなければいけないことを表現
+デフォルトのエラーメッセージは「must be less than %{count}」
+
+#### less_than_or_equal_to
+指定の値以下でなければいけないことを表現
+デフォルトのエラーメッセージは「must be less than or equal to %{count}」
+
+#### other_than
+指定した値以外でなければいけないことを表現
+デフォルトのエラーメッセージは「must be other than %{count}」
+
+#### in
+指定した範囲に値が含まれていることを表現
+デフォルトのエラーメッセージは「must be in %{count}」
+
+#### odd: true
+奇数でなければいけないことを表現
+デフォルトのエラーメッセージは「must be odd」
+
+#### even: true
+偶数でなければいけないことを表現
+デフォルトのエラーメッセージは「must be even」
