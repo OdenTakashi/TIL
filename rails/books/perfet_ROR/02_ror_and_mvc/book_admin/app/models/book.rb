@@ -12,6 +12,17 @@ class Book < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   validate :name, :include_exercise_word
 
+  before_validation :add_lovely_to_cat
+  after_destroy do
+    Rails.logger.info "Book is deleted: #{self.attributes}"
+  end
+
+  def add_lovely_to_cat
+    self.name = self.name.gsub(/Cat/) do |matched|
+      "lovely #{matched}"
+    end
+  end
+
   def include_exercise_word
     if name.include?("exercise")
       errors.add(:name, "I don't like exercise")
