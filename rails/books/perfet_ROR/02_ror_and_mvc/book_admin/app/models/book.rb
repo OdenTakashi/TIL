@@ -17,6 +17,15 @@ class Book < ApplicationRecord
     Rails.logger.info "Book is deleted: #{self.attributes}"
   end
 
+  after_destroy if: :high_price? do
+    Rails.logger.info "Book with high price is deleted #{self.attributes}"
+    Rails.logger.warn "Please check!!"
+  end
+
+  def high_price?
+    price >= 5000
+  end
+
   def add_lovely_to_cat
     self.name = self.name.gsub(/Cat/) do |matched|
       "lovely #{matched}"
