@@ -277,3 +277,12 @@ book-admin(dev)> Book.find_price(10000)
 #### even: true
 偶数でなければいけないことを表現
 デフォルトのエラーメッセージは「must be even」
+
+## CRUD: 戻り値
+### create, update
+成功失敗問わず、インスタンスを返す
+なのでvalidationが失敗していても、インスタンスが変えるのでif文ではtrue扱いになる
+
+### save
+成功 -> true
+失敗 -> false
