@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_02_133754) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_06_091837) do
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.string "penname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "book_authors", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.integer "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_book_authors_on_author_id"
+    t.index ["book_id"], name: "index_book_authors_on_book_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -25,6 +34,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_133754) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "publisher_id", null: false
+    t.integer "sales_status"
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
@@ -35,5 +45,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_133754) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "book_authors", "authors"
+  add_foreign_key "book_authors", "books"
   add_foreign_key "books", "publishers"
 end

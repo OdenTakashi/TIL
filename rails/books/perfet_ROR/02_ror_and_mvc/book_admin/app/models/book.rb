@@ -22,6 +22,12 @@ class Book < ApplicationRecord
     Rails.logger.warn "Please check!!"
   end
 
+  enum sales_status: {
+    reservation: 0,
+    now_on_sale: 1,
+    end_of_print: 2
+  }
+
   def high_price?
     price >= 5000
   end
