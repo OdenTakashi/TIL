@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   get "/books/:id" => "books#show"
+  delete "books/:id" => "books#detroy"
 end
