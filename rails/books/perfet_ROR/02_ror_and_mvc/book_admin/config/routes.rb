@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get "profiles/show"
-  get "profiles/edit"
-  get "profiles/update"
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
@@ -11,4 +8,5 @@ Rails.application.routes.draw do
   delete "books/:id" => "books#detroy"
 
   resources :publishers
+  resource :profile, only: %i[show edit update]
 end
