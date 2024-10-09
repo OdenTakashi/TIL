@@ -4,7 +4,6 @@ class BooksController < ApplicationController
   around_action :action_logger, only: [ :destroy ]
 
   def show
-    binding.irb
     respond_to do |format|
       format.html
       format.json { render json: @book }
