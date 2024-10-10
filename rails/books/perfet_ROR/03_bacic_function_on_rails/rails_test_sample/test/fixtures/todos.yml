@@ -7,3 +7,7 @@ one:
 two:
   title: MyString
   body: MyText
+
+todo:
+  title: sample
+  body: Todo Body
