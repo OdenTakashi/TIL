@@ -1,16 +1,21 @@
 default: &default
   adapter: sqlite3
+  encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  username: root
+  password:
+  host: 127.0.0.1 
 
 development:
   primary:
     <<: *default
-    database: db/development.sqlite3
-  sub:
+    database: db_sample_development
+    port: 33061
+  primary_replica:
     <<: *default
-    database: db/development_sub.sqlite3
-    migration_paths: db/sub_migrate
+    database: db_sample_development
+    port: 33062
+    replica: true
 
 test:
   <<: *default
