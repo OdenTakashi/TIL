@@ -1,13 +1,10 @@
-class Wc
-  def self.run
-    options = Wc::Options.parse
+require_relative 'wc/runner'
 
-    if ARGV.empty?
-      contents = Wc::StdinCalculator.run(options)
-      Wc::Output.exec(contents)
-    else
-      contents = Wc::FileCalculator.run(options)
-      Wc::Output.exec(contents)
-    end
-  end
+require_relative 'wc/file_calculator'
+require_relative 'wc/output'
+require_relative 'wc/output'
+require_relative 'wc/options'
+require_relative 'wc/stdin_calculator'
+
+module Wc
 end
