@@ -1,6 +1,10 @@
 module Wc
   class StdinCalculator
-    def self.count_sizes_of_stdin(options)
+    def self.run(options)
+      new.count_sizes_of_stdin(options)
+    end
+
+    def count_sizes_of_stdin(options)
       standard_input = $stdin.read
       standard_contents =
         [{ lines: count_lines(standard_input), words: count_words(standard_input), bytes: count_bytes(standard_input) }]

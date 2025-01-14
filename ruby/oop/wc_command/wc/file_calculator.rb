@@ -1,5 +1,9 @@
 module Wc
   class FileCalculator
+    def self.run(options)
+      new.count_sizes_of_file(options)
+    end
+
     def count_sizes_of_file(params)
       filenames = ARGV
       contents = filenames.map do |filename|

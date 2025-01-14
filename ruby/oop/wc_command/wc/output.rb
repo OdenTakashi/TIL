@@ -1,5 +1,9 @@
 module Wc
   class Output
+    def self.exec(contents)
+      new.output_info_of_file(contents)
+    end
+
     def output_info_of_file(contents)
       contents.each do |content|
         puts "#{content[:lines]} #{content[:words]} #{content[:bytes]} #{content[:file_name]}"
