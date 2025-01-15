@@ -1,5 +1,7 @@
 module Wc
   class StdinCalculator
+    include Wc::Calculator
+
     def self.run(options)
       new.count_sizes_of_stdin(options)
     end
@@ -11,19 +13,6 @@ module Wc
       standard_contents = remove_words_bytes(standard_contents) if options[:onlylines]
 
       return standard_contents
-    end
-
-    def count_lines(file_content)
-      file_content.count("\n")
-    end
-
-    def count_words(file_content)
-      ary = file_content.split(/\s+/)
-      ary.size
-    end
-
-    def count_bytes(file_content)
-      file_content.bytesize
     end
   end
 end

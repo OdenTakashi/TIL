@@ -1,5 +1,7 @@
 module Wc
   class FileCalculator
+    include Wc::Calculator
+
     def self.run(options)
       new.count_sizes_of_file(options)
     end
@@ -14,19 +16,6 @@ module Wc
       contents = remove_words_bytes(contents) if params[:onlylines]
 
       return contents
-    end
-
-    def count_lines(file_content)
-      file_content.count("\n")
-    end
-
-    def count_words(file_content)
-      ary = file_content.split(/\s+/)
-      ary.size
-    end
-
-    def count_bytes(file_content)
-      file_content.bytesize
     end
   end
 end
