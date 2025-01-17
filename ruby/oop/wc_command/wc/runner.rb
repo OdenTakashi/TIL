@@ -4,7 +4,11 @@ module Wc
       options = Options.parse
       contents = ARGV.empty? ? StdinCalculator.run(options) : FileCalculator.run(options)
 
-      Wc::Output.exec(contents)
+      if ARGV.empty?
+        Wc::Output.new.output_info_of_stdin(contents)
+      else
+        Wc::Output.new.output_info_of_file(contents)
+      end
     end
   end
 end
