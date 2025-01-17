@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Wc
   module Calculator
     def count_lines(file_content)
@@ -22,7 +24,7 @@ module Wc
       end
       total
     end
-    
+
     def remove_words_bytes(contents)
       contents.each do |content|
         content.delete(:words)

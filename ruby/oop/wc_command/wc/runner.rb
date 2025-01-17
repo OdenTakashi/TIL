@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Wc
   class Runner
     def self.run

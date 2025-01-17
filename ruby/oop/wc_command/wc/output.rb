@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Wc
   class Output
     def output_info_of_file(contents)
