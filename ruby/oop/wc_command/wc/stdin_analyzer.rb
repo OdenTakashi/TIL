@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module Wc
-  class StdinCalculator
+  class StdinAnalyzer
     include Wc::Calculator
 
     def self.run(options)
@@ -12,7 +14,7 @@ module Wc
         [{ lines: count_lines(standard_input), words: count_words(standard_input), bytes: count_bytes(standard_input) }]
       standard_contents = remove_words_bytes(standard_contents) if options[:onlylines]
 
-      return standard_contents
+      standard_contents
     end
   end
 end

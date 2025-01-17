@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'optparse'
 
 module Wc
@@ -8,7 +10,7 @@ module Wc
       opt.on('-l', '--onlylines') { |v| v }
       opt.parse!(ARGV, into: params)
 
-      return params
+      params
     end
   end
 end

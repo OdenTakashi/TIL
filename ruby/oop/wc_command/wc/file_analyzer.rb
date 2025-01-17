@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module Wc
-  class FileCalculator
+  class FileAnalyzer
     include Wc::Calculator
 
     def self.run(options)
@@ -15,7 +17,7 @@ module Wc
       contents << total_result(contents) if filenames.count > 1
       contents = remove_words_bytes(contents) if params[:onlylines]
 
-      return contents
+      contents
     end
   end
 end
