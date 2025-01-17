@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Wc
-  class StdinCalculator
+  class StdinAnalyzer
     include Wc::Calculator
 
     def self.run(options)

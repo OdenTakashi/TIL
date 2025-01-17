@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Wc
-  class FileCalculator
+  class FileAnalyzer
     include Wc::Calculator
 
     def self.run(options)

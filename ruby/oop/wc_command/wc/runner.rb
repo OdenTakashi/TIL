@@ -4,12 +4,12 @@ module Wc
   class Runner
     def self.run
       options = Options.parse
-      contents = ARGV.empty? ? StdinCalculator.run(options) : FileCalculator.run(options)
+      contents = ARGV.empty? ? StdinAnalyzer.run(options) : FileAnalyzer.run(options)
 
       if ARGV.empty?
-        Wc::Output.new.output_info_of_stdin(contents)
+        Output.new.output_info_of_stdin(contents)
       else
-        Wc::Output.new.output_info_of_file(contents)
+        Output.new.output_info_of_file(contents)
       end
     end
   end
