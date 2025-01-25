@@ -3,6 +3,7 @@
 module Wc
   class Runner
     def self.run
+      dfdsddsds
       options = Options.parse
       contents = ARGV.empty? ? StdinAnalyzer.run(options) : FileAnalyzer.run(options)
 

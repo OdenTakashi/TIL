@@ -16,7 +16,7 @@ module Wc
     end
 
     def total_result(contents)
-      total = { lines: 0, words: 0, bytes: 0, file_name: 'total' }
+      total = {lines: 0, words: 0, bytes: 0, file_name: "total"}
       contents.each do |hash|
         total[:lines] += hash[:lines]
         total[:words] += hash[:words]
