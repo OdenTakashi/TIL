@@ -1,0 +1,2 @@
+class SecondaryUser < SecondaryRecord
+end
