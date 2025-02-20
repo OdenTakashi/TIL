@@ -13,7 +13,6 @@ development:
   primary:
     <<: *default
     database:  primary_development
-    migrations_paths: db/primary_migrate
   secondary:
     <<: *default
     database: secondary_development
