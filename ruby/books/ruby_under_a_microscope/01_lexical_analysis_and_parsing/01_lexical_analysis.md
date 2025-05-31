@@ -1,4 +1,7 @@
-## Rubyのしくみ -Ruby Under a Microscope- まとめ01
+# Rubyのしくみ -Ruby Under a Microscope-
+- Pat Shaughnessy 著
+- 島田浩二, 角谷信太朗 共訳
+
 - プログラムを実行する前にRubyは3回コードを読んでいる
 1. Rubyコード
 2. 字句解析
