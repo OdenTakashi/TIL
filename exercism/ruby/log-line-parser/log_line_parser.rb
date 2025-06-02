@@ -4,14 +4,16 @@ class LogLineParser
   end
 
   def message
-    raise 'Please implement the LogLineParser#message method'
+    @line.strip.sub(/^\[([A-Z]+)\]:\s*/, '')
   end
 
   def log_level
-    raise 'Please implement the LogLineParser#log_level method'
+    @line.strip.match(/^\[([A-Z]+)\]:/)[1].downcase
   end
 
   def reformat
-    raise 'Please implement the LogLineParser#reformat method'
+    level = log_level
+    message_content = message
+    "#{message_content} (#{level})"
   end
 end
