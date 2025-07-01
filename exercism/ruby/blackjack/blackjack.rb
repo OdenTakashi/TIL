@@ -46,6 +46,20 @@ module Blackjack
   end
 
   def self.first_turn(card1, card2, dealer_card)
-    raise "Please implement the Blackjack.first_turn method"
+    total_score = parse_card(card1) + parse_card(card2)
+
+    if total_score == 21 && dealer_card != 'ace' && dealer_card != 'ten' && !face_card?(dealer_card)
+      "W"
+    elsif (total_score == 21 && (dealer_card == 'ace' || dealer_card == 'ten' || face_card?(dealer_card))) || (card_range(card1, card2) == 'high' || (card_range(card1, card2) == 'mid' && parse_card(dealer_card) < 7))
+      "S"
+    elsif (card_range(card1, card2) == 'mid' && parse_card(dealer_card) >= 7) || (total_score < 17)
+      "H"
+    elsif card1 == 'ace' || card2 == 'ace'
+      "P"
+    end
+  end
+
+  def self.face_card?(card)
+    ['jack', 'queen', 'king'].include?(card)
   end
 end
