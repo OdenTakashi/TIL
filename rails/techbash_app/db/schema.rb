@@ -15,7 +15,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_052511) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_driving_licences_on_user_id"
+    t.index ["user_id"], name: "index_driving_licences_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
