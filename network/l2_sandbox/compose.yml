@@ -1,0 +1,72 @@
+services:
+  host-a:
+    build: .
+    container_name: l2-host-a
+    hostname: host-a
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    environment:
+      STRIP_IP: "1"
+      SRC_MAC: "02:00:00:00:00:0a"
+      DST_MAC: "02:00:00:00:00:0b"
+    mac_address: "02:00:00:00:00:0a"
+    volumes:
+      - ./:/app
+    networks:
+      - west
+    stdin_open: true
+    tty: true
+
+  host-b:
+    build: .
+    container_name: l2-host-b
+    hostname: host-b
+    privileged: true
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    environment:
+      STRIP_IP: "1"
+    volumes:
+      - ./:/app
+    networks:
+      west:
+        mac_address: "02:00:00:00:00:0b"
+      east:
+        mac_address: "02:00:00:00:00:b1"
+    stdin_open: true
+    tty: true
+
+  host-c:
+    build: .
+    container_name: l2-host-c
+    hostname: host-c
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    environment:
+      STRIP_IP: "1"
+      SRC_MAC: "02:00:00:00:00:0c"
+      DST_MAC: "02:00:00:00:00:b1"
+    mac_address: "02:00:00:00:00:0c"
+    volumes:
+      - ./:/app
+    networks:
+      - east
+    stdin_open: true
+    tty: true
+
+networks:
+  west:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.99.1.0/24
+  east:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.99.2.0/24
